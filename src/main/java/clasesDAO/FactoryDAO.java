@@ -1,5 +1,7 @@
 package clasesDAO;
 
+import interfacesDAO.*;
+
 public class FactoryDAO {
 	
 	public static AdministradorDAO getAdministradorDAO(){

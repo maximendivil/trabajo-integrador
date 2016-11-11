@@ -1,10 +1,11 @@
 package interfacesDAO;
 
+import java.io.Serializable;
 import java.util.List;
 
 public interface GenericDAO<T> {
 	List<T> obtenerTodos();
-	T obtener(int id);
-	void eliminar(int id);
-	void guardar(T type);
+	T obtener(Serializable id);
+	T eliminar(Serializable id);
+	T guardar(T entity);
 }

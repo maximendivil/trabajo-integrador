@@ -8,6 +8,6 @@ import clases.Comentario;
 import clases.Publicacion;
 
 public interface AdministradorDAO extends GenericDAO<Administrador>{
-	List<Publicacion> obtenerPublicaciones(Serializable id);
-	List<Comentario> obtenerComentarios(Serializable id);
+	List<Publicacion> obtenerPublicaciones(long id);
+	List<Comentario> obtenerComentarios(long id);
 }

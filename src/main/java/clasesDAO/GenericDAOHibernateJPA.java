@@ -26,7 +26,7 @@ public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 	}
 
 	@Override
-	public T obtener(Serializable id) {
+	public T obtener(long id) {
 		Query q = EMF.getEMF().createEntityManager().createQuery("Select * from " + getPersistentClass().getSimpleName() + "Where id = :id");
 		q.setParameter("id", id);
 		T resultado = (T) q.getSingleResult();
@@ -34,7 +34,7 @@ public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 	}
 
 	@Override
-	public T eliminar(Serializable id) {
+	public T eliminar(long id) {
 		T entity = EMF.getEMF().createEntityManager().find(this.getPersistentClass(), id);
 		if (entity != null) {
 			this.borrar(entity); 

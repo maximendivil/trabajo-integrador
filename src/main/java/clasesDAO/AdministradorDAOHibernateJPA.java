@@ -17,14 +17,14 @@ public class AdministradorDAOHibernateJPA extends GenericDAOHibernateJPA<Adminis
 	}
 	
 	@Override
-	public List<Publicacion> obtenerPublicaciones(Serializable id) {
+	public List<Publicacion> obtenerPublicaciones(long id) {
 		Query q = EMF.getEMF().createEntityManager().createQuery("Select * from Administrador a INNER JOIN Publicacion p on a.id=p.idP");
 		List<Publicacion> resultado = (List<Publicacion>) q.getResultList();
 		return resultado;
 	}
 	
 	@Override
-	public List<Comentario> obtenerComentarios(Serializable id) {
+	public List<Comentario> obtenerComentarios(long id) {
 		Query q = EMF.getEMF().createEntityManager().createQuery("Select * from Administrador a INNER JOIN Comentario c on a.id=c.idP");
 		List<Comentario> resultado = (List<Comentario>) q.getResultList();
 		return resultado;

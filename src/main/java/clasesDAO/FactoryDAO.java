@@ -5,7 +5,7 @@ import interfacesDAO.*;
 public class FactoryDAO {
 	
 	public static GenericDAO getAdministradorDAO(){
-		return new AdministradorDAOjpa();
+		return new AdministradorDAOHibernateJPA();
 	}
 	public static AlumnoDAO getAlumnoDAO(){
 		return new AlumnoDAOjpa();

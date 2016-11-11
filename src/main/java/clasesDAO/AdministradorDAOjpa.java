@@ -5,7 +5,7 @@ import java.util.List;
 import clases.Administrador;
 import interfacesDAO.AdministradorDAO;
 
-public class AdministradorDAOjpa implements AdministradorDAO {
+public class AdministradorDAOjpa implements GenericDAO<T> {
 
 	public AdministradorDAOjpa() {
 		// TODO Auto-generated constructor stub

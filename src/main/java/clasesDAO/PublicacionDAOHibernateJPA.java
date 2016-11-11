@@ -12,11 +12,11 @@ public class PublicacionDAOHibernateJPA extends GenericDAOHibernateJPA<Publicaci
 		super(Publicacion.class);
 	}
 	@Override
-	public List<Publicacion> obtenerPublicaciones(Serializable id){
+	public List<Publicacion> obtenerPublicaciones(long id){
 		return null;
 	}
 	@Override
-	public List<Comentario> obtenerComentarios(Serializable id){
+	public List<Comentario> obtenerComentarios(long id){
 		return null;
 	}
 }

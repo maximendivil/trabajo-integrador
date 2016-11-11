@@ -5,6 +5,6 @@ import java.util.List;
 import clases.*;
 
 public interface CarteleraDAO extends GenericDAO<Cartelera>{
-	List<Publicacion> obtenerPublicaciones(int id);
-	List<Alumno> obtenerAlumnosInteresados(int id);
+	List<Publicacion> obtenerPublicaciones(long id);
+	List<Alumno> obtenerAlumnosInteresados(long id);
 }

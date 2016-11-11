@@ -6,7 +6,7 @@ import java.util.List;
 import clases.*;
 
 public interface ProfesorDAO extends GenericDAO<Profesor> {
-	List<Publicacion> obtenerPublicaciones(Serializable id);
-	List<Cartelera> obtenerCarteleras(Serializable id);
-	List<Comentario> obtenerComentarios(Serializable id);
+	List<Publicacion> obtenerPublicaciones(long id);
+	List<Cartelera> obtenerCarteleras(long id);
+	List<Comentario> obtenerComentarios(long id);
 }

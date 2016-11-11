@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface GenericDAO<T> {
 	List<T> obtenerTodos();
-	T obtener(Serializable id);
-	T eliminar(Serializable id);
+	T obtener(long id);
+	T eliminar(long id);
 	T guardar(T entity);
 }

@@ -7,6 +7,6 @@ import clases.Cartelera;
 import clases.Comentario;
 
 public interface AlumnoDAO extends GenericDAO<Alumno>{
-	List<Comentario> obtenerComentarios(int id);
-	List<String> obtenerIntereses(int id); // Ver como se guardan los intereses.
+	List<Comentario> obtenerComentarios(long id);
+	List<String> obtenerIntereses(long id); // Ver como se guardan los intereses.
 }

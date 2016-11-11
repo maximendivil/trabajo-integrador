@@ -8,21 +8,21 @@ public class FactoryDAO {
 		return new AdministradorDAOHibernateJPA();
 	}
 	public static AlumnoDAO getAlumnoDAO(){
-		return new AlumnoDAOjpa();
+		return new AlumnoDAOHibernateJPA();
 	}
 	public static ProfesorDAO getProfesorDAO(){
-		return new ProfesorDAOjpa();
+		return new ProfesorDAOHibernateJPA();
 	}
 	public static PublicadorDAO getPublicadorDAO(){
-		return new PublicadorDAOjpa();
+		return new PublicadorDAOHibernateJPA();
 	}
 	public static CarteleraDAO getCarteleraDAO(){
-		return new CarteleraDAOjpa();
+		return new CarteleraDAOHibernateJPA();
 	}
 	public static PublicacionDAO getPublicacionDAO(){
-		return new PublicacionDAOjpa();
+		return new PublicacionDAOHibernateJPA();
 	}
 	public static ComentarioDAO getComentarioDAO(){
-		return new ComentarioDAOjpa();
+		return new ComentarioDAOHibernateJPA();
 	}
 }

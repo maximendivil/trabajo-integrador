@@ -18,25 +18,15 @@ public class CarteleraDAOHibernateJPA extends GenericDAOHibernateJPA<Cartelera> 
 	}
 	
 	@Override
-<<<<<<< HEAD
-	public List<Publicacion> obtenerPublicaciones(int id) {
-		Query q = EMF.getEMF().createEntityManager().createQuery("Select * from Cartelera c INNER JOIN Publicacion p on c.id=p.CARTELERA_ID");
-=======
 	public List<Publicacion> obtenerPublicaciones(long id) {
-		Query q = EMF.getEMF().createEntityManager().createQuery("Select * from Cartelera c INNER JOIN Publicacion p on c.id=p.idC");
->>>>>>> fbd16c768546a894b758d4d1b4f13e0e76e0468e
+		Query q = EMF.getEMF().createEntityManager().createQuery("Select * from Cartelera c INNER JOIN Publicacion p on c.id=p.CARTELERA_ID");
 		List<Publicacion> resultado = (List<Publicacion>) q.getResultList();
 		return resultado;
 	}
 
 	@Override
-<<<<<<< HEAD
-	public List<Alumno> obtenerAlumnosInteresados(int id) {
-		Query q = EMF.getEMF().createEntityManager().createQuery("Select * from Cartelera c INNER JOIN Intereses i on c.id=i.CARTELERA_ID");
-=======
 	public List<Alumno> obtenerAlumnosInteresados(long id) {
-		Query q = EMF.getEMF().createEntityManager().createQuery("Select * from Cartelera c INNER JOIN Intereses i on c.id=i.idC");
->>>>>>> fbd16c768546a894b758d4d1b4f13e0e76e0468e
+		Query q = EMF.getEMF().createEntityManager().createQuery("Select * from Cartelera c INNER JOIN Intereses i on c.id=i.CARTELERA_ID");
 		List<Alumno> resultado = (List<Alumno>) q.getResultList();
 		return resultado;
 	}

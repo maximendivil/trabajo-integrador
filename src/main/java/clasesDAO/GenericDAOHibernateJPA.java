@@ -20,7 +20,7 @@ public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 	
 	@Override
 	public List<T> obtenerTodos() {
-		Query q = EMF.getEMF().createEntityManager().createQuery("Select * from " + getPersistentClass().getSimpleName());
+		Query q = EMF.getEMF().createEntityManager().createQuery("from " + getPersistentClass().getSimpleName());
 		List<T> resultado = (List<T>) q.getResultList();
 		return resultado;
 	}

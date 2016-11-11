@@ -4,6 +4,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 @Entity
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public abstract class Persona implements java.io.Serializable{
 	//Variables de instancia
 	@Id @GeneratedValue

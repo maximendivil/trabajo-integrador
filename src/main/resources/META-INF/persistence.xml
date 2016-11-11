@@ -5,7 +5,6 @@ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
 http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd" version="2.1">
 	<persistence-unit name="persistencia">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<class>entityManager.EMF</class>
 		<properties>
 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
 			<property name="hibernate.connection.password" value=""/>

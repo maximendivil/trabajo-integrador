@@ -6,8 +6,11 @@ import java.util.List;
 
 import javax.persistence.*;
 
+@Entity
 public class Administrador extends Persona implements java.io.Serializable {
+	@OneToMany(mappedBy="creador")
 	private List<Publicacion> publicaciones;
+	@OneToMany(mappedBy="creador")
 	private List<Comentario> comentarios;
 	
 	public Administrador(){

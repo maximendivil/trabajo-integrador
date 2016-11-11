@@ -10,6 +10,8 @@ public class Comentario implements java.io.Serializable{
 	private int id;
 	private String texto;
 	private Date fechaCreacion;
+	@ManyToOne(optional=false)
+	@JoinColumn(name="PERSONA_ID")
 	private Persona creador;
 	
 	public Comentario(){

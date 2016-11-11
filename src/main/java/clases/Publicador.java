@@ -6,9 +6,17 @@ import java.util.List;
 
 import javax.persistence.*;
 
+@Entity
 public class Publicador extends Persona implements java.io.Serializable{
+	@OneToMany(mappedBy="creador")
 	private List<Publicacion> publicaciones;
+	@ManyToMany
+	@JoinTable(name="habilitadas",
+		joinColumns=@JoinColumn(name="PUBLICADOR_ID",referencedColumnName="id"),
+		inverseJoinColumns=@JoinColumn(name="CARTELERA_ID",referencedColumnName="id")
+		)
 	private List<Cartelera> cartelerasHabilitadas;
+	@OneToMany(mappedBy="creador")
 	private List<Comentario> comentarios;
 	
 	public Publicador(){

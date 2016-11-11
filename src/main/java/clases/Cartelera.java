@@ -12,9 +12,12 @@ public class Cartelera implements java.io.Serializable {
 	private int id;
 	private String nombre;
 	private Date fechaCreacion;
+	@OneToMany(mappedBy="cartelera")
 	private List<Publicacion> publicaciones;
+	@ManyToMany(mappedBy="intereses")
 	private List<Alumno> alumnosInteresados;
-	
+	@ManyToMany(mappedBy="cartelerasHabilitadas")
+	private List<Publicador> personasHabilitadas;
 	public Cartelera(){
 		
 	}

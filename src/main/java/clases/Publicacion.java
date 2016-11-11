@@ -15,6 +15,11 @@ public class Publicacion implements java.io.Serializable{
 	private String multimedia;
 	private Date fechaCreacion;
 	private List<Comentario> comentarios;
+	@ManyToOne(optional=false)
+	@JoinColumn(name="CARTELERA_ID")
+	private Cartelera cartelera;
+	@ManyToOne(optional=false)
+	@JoinColumn(name="PERSONA_ID")
 	private Persona creador;
 	
 	public Publicacion(){

@@ -3,9 +3,12 @@ package clasesDAO;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Query;
+
 import clases.Alumno;
 import clases.Cartelera;
 import clases.Comentario;
+import entityManager.EMF;
 import interfacesDAO.AlumnoDAO;
 
 public class AlumnoDAOHibernateJPA extends GenericDAOHibernateJPA<Alumno> implements AlumnoDAO {	
@@ -16,14 +19,16 @@ public class AlumnoDAOHibernateJPA extends GenericDAOHibernateJPA<Alumno> implem
 	
 	@Override
 	public List<Comentario> obtenerComentarios(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Query q = EMF.getEMF().createEntityManager().createQuery("Select * from Alumno a INNER JOIN Comentario c on a.id=c.idP");
+		List<Comentario> resultado = (List<Comentario>) q.getResultList();
+		return resultado;
 	}
 
 	@Override
-	public List<Cartelera> obtenerIntereses(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<String> obtenerIntereses(int id) { //Ver como guardar intereses
+		Query q = EMF.getEMF().createEntityManager().createQuery("Select * from Alumno a INNER JOIN Interes i on a.id=i.idP");
+		List<String> resultado = (List<String>) q.getResultList();
+		return resultado;
 	}
 
 }

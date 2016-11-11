@@ -5,10 +5,17 @@ import java.util.List;
 
 import javax.persistence.*;
 
+@Entity
 public class Alumno extends Persona implements java.io.Serializable{
 	//Variables de instancia
 	private String legajo;
+	@OneToMany(mappedBy="creador")
 	private List<Comentario> comentarios;
+	@ManyToMany
+	@JoinTable(name="intereses",
+		joinColumns=@JoinColumn(name="PERSONA_ID",referencedColumnName="id"),
+		inverseJoinColumns=@JoinColumn(name="CARTELERA_ID",referencedColumnName="id")
+		)
 	private List<Cartelera> intereses;
 	
 	//Constructores

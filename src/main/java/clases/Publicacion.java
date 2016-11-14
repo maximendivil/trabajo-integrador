@@ -91,4 +91,12 @@ public class Publicacion implements java.io.Serializable{
 	public void setCreador(Persona creador) {
 		this.creador = creador;
 	}
+
+	public Cartelera getCartelera() {
+		return cartelera;
+	}
+
+	public void setCartelera(Cartelera cartelera) {
+		this.cartelera = cartelera;
+	}
 } 

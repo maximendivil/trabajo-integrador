@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Entity
 public class Cartelera implements java.io.Serializable {
 	@Id @GeneratedValue
-	private int id;
+	private long id;
 	private String nombre;
 	private Date fechaCreacion;
 	@OneToMany(mappedBy="cartelera")
@@ -29,11 +29,11 @@ public class Cartelera implements java.io.Serializable {
 		this.alumnosInteresados = new ArrayList<Alumno>();
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

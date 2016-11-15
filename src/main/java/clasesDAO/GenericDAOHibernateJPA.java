@@ -3,6 +3,7 @@ package clasesDAO;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
@@ -42,7 +43,7 @@ public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 		return entity; 
 	}
 	
-	public void borrar(T entity) { 
+	private void borrar(T entity) { 
 		EntityManager em = EMF.getEMF().createEntityManager();
 		EntityTransaction tx = null;
 		try { 
@@ -72,6 +73,29 @@ public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 			tx = em.getTransaction();
 			tx.begin();
 			em.persist(entity);
+			tx.commit();
+		}
+		catch (RuntimeException e) {
+			if ( tx != null && tx.isActive() ) {
+				tx.rollback();
+				System.out.println(e.getMessage());
+				throw e;
+			}
+		}
+		finally { 
+			em.close();
+		}
+		return entity;
+	}
+	
+	@Override
+	public T modificar(T entity){
+		EntityManager em = EMF.getEMF().createEntityManager();
+		EntityTransaction tx = null;
+		try {
+			tx = em.getTransaction();
+			tx.begin();
+			em.merge(entity);
 			tx.commit();
 		}
 		catch (RuntimeException e) {

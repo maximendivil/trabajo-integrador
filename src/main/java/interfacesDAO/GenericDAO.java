@@ -8,4 +8,5 @@ public interface GenericDAO<T> {
 	T obtener(long id);
 	T eliminar(long id);
 	T guardar(T entity);
+	T modificar(T entity);
 }

@@ -54,4 +54,8 @@ public class Alumno extends Persona implements java.io.Serializable{
 	public void setIntereses(List<Cartelera> intereses) {
 		this.intereses = intereses;
 	}
+	
+	public void agregarInteres(Cartelera c){
+		this.intereses.add(c);
+	}
 }

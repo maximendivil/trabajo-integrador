@@ -54,5 +54,7 @@ public class Publicador extends Persona implements java.io.Serializable{
 		this.comentarios = comentarios;
 	}
 	
-	
+	public void agregarCartelera(Cartelera c){
+		this.cartelerasHabilitadas.add(c);
+	}
 }

@@ -14,7 +14,7 @@ public class Publicacion implements java.io.Serializable{
 	private String descripcion;
 	private String multimedia;
 	private Date fechaCreacion;
-	@OneToMany(mappedBy="creador")
+	@OneToMany(mappedBy="publicacion")
 	private List<Comentario> comentarios;
 	@ManyToOne(optional=false)
 	@JoinColumn(name="CARTELERA_ID")

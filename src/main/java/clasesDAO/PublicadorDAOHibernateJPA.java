@@ -19,7 +19,8 @@ public class PublicadorDAOHibernateJPA extends GenericDAOHibernateJPA<Publicador
 	
 	@Override
 	public List<Publicacion> obtenerPublicaciones(long id) {
-		Query q = EMF.getEMF().createEntityManager().createQuery("Select * from Publicador pr INNER JOIN Publicacion p on pr.id=p.PERSONA_ID");
+		Query q = EMF.getEMF().createEntityManager().createQuery("SELECT c FROM Publicador p JOIN p.cartelerasHabilitadas c WHERE p.id=:id");
+		q.setParameter("id", id);
 		List<Publicacion> resultado = (List<Publicacion>) q.getResultList();
 		return resultado;
 	}

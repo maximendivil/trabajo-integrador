@@ -1,7 +1,9 @@
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -133,6 +135,84 @@ public class Prueba extends HttpServlet {
 		pu3.agregarCartelera(c8);
 		
 		modificarPublicadores(pu1, pu2, pu3);
+		
+		System.out.println("\nLISTADO DE ALUMNOS:");
+		ArrayList<Alumno> alumnos = (ArrayList<Alumno>) FactoryDAO.getAlumnoDAO().obtenerTodos();
+		Iterator<Alumno> it = alumnos.iterator();
+		Alumno aux;
+		while (it.hasNext()){
+			aux = it.next();
+			System.out.println("Alumno: " + aux.getApellido() + " " + aux.getNombre() + " DNI: " + aux.getDni() + " email: " + aux.getEmail() );
+		}		
+		
+		System.out.println("\nLISTADO DE ADMINISTRADORES:");
+		ArrayList<Administrador> administradores = (ArrayList<Administrador>) FactoryDAO.getAdministradorDAO().obtenerTodos();
+		Iterator<Administrador> it2 = administradores.iterator();
+		Administrador aux2;
+		while (it2.hasNext()){
+			aux2 = it2.next();
+			System.out.println("Administrador: " + aux2.getApellido() + " " + aux2.getNombre() + " DNI: " + aux2.getDni() + " email: " + aux2.getEmail() );
+		}
+		
+		System.out.println("\nLISTADO DE PROFESORES:");
+		ArrayList<Profesor> profesores = (ArrayList<Profesor>) FactoryDAO.getProfesorDAO().obtenerTodos();
+		Iterator<Profesor> it3 = profesores.iterator();
+		Profesor aux3;
+		while (it3.hasNext()){
+			aux3 = it3.next();
+			System.out.println("Profesor: " + aux3.getApellido() + " " + aux3.getNombre() + " DNI: " + aux3.getDni() + " email: " + aux3.getEmail() );
+		}
+		
+		System.out.println("\nLISTADO DE PUBLICADORES:");
+		ArrayList<Publicador> publicadores = (ArrayList<Publicador>) FactoryDAO.getPublicadorDAO().obtenerTodos();
+		Iterator<Publicador> it4 = publicadores.iterator();
+		Publicador aux4;
+		while (it4.hasNext()){
+			aux4 = it4.next();
+			System.out.println("Publicador: " + aux4.getApellido() + " " + aux4.getNombre() + " DNI: " + aux4.getDni() + " email: " + aux4.getEmail() );
+		}
+		
+		System.out.println("\nLISTADO DE CARTELERAS:");
+		ArrayList<Cartelera> carteleras = (ArrayList<Cartelera>) FactoryDAO.getCarteleraDAO().obtenerTodos();
+		Iterator<Cartelera> it5 = carteleras.iterator();
+		Cartelera aux5;
+		while (it5.hasNext()){
+			aux5 = it5.next();
+			System.out.println("Cartelera: " + aux5.getNombre());
+		}
+		
+		System.out.println("\nCARTELERAS QUE PRESENTÓ INTERES EL ALUMNO MENDIVIL:");
+		ArrayList<Cartelera> intereses = (ArrayList<Cartelera>) FactoryDAO.getAlumnoDAO().obtenerIntereses(al1.getId());
+		Iterator<Cartelera> it6 = intereses.iterator();
+		Cartelera aux6;
+		while (it6.hasNext()){
+			aux6 = it6.next();
+			System.out.println("Cartelera: " + aux6.getNombre());
+		}
+		
+		System.out.println("\nCARTELERAS QUE PRESENTÓ INTERES EL ALUMNO RINGUELET:");
+		intereses = (ArrayList<Cartelera>) FactoryDAO.getAlumnoDAO().obtenerIntereses(al2.getId());
+		it6 = intereses.iterator();
+		while (it6.hasNext()){
+			aux6 = it6.next();
+			System.out.println("Cartelera: " + aux6.getNombre());
+		}
+		
+		System.out.println("\nCARTELERAS QUE PRESENTÓ INTERES EL ALUMNO LA FRAZIA:");
+		intereses = (ArrayList<Cartelera>) FactoryDAO.getAlumnoDAO().obtenerIntereses(al3.getId());
+		it6 = intereses.iterator();
+		while (it6.hasNext()){
+			aux6 = it6.next();
+			System.out.println("Cartelera: " + aux6.getNombre());
+		}
+		
+		System.out.println("\nCARTELERAS HABILITADAS PARA LA PROFESORA FAVA:");
+		ArrayList<Cartelera> habilitadas = (ArrayList<Cartelera>) FactoryDAO.getProfesorDAO().obtenerCarteleras(p1.getId());
+		it6 = habilitadas.iterator();
+		while (it6.hasNext()){
+			aux6 = it6.next();
+			System.out.println("Cartelera: " + aux6.getNombre());
+		}
 	}
 
 	/**
@@ -190,9 +270,9 @@ public class Prueba extends HttpServlet {
 	
 	private void guardarAdministradores(Administrador a1, Administrador a2, Administrador a3){
 		try {
-			a1 = (Administrador) FactoryDAO.getAdministradorDAO().guardar(a1);
-			a2 = (Administrador) FactoryDAO.getAdministradorDAO().guardar(a2);
-			a3 = (Administrador) FactoryDAO.getAdministradorDAO().guardar(a3);
+			a1 = FactoryDAO.getAdministradorDAO().guardar(a1);
+			a2 = FactoryDAO.getAdministradorDAO().guardar(a2);
+			a3 = FactoryDAO.getAdministradorDAO().guardar(a3);
 			System.out.println("Se guardaron los administradores correctamente");
 		}
 		catch (Exception e){

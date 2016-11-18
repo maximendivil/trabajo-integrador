@@ -23,7 +23,7 @@ public class Publicador extends Persona implements java.io.Serializable{
 		
 	}
 	
-	public Publicador(String nombre, String apellido, Date fechaNacimiento, double dni, String email, int rol, String usuario, String contraseña){
+	public Publicador(String nombre, String apellido, Date fechaNacimiento, long dni, String email, int rol, String usuario, String contraseña){
 		super(nombre, apellido, fechaNacimiento, dni, email, rol, usuario, contraseña);
 		this.publicaciones = new ArrayList<Publicacion>();
 		this.cartelerasHabilitadas = new ArrayList<Cartelera>();

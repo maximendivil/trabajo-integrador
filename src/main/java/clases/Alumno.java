@@ -23,7 +23,7 @@ public class Alumno extends Persona implements java.io.Serializable{
 		
 	}
 	
-	public Alumno(String nombre, String apellido, Date fechaNacimiento, double dni, String email, int rol, String usuario, String contraseña, String legajo){
+	public Alumno(String nombre, String apellido, Date fechaNacimiento, long dni, String email, int rol, String usuario, String contraseña, String legajo){
 		super(nombre, apellido, fechaNacimiento, dni, email, rol, usuario, contraseña);
 		this.legajo = legajo;
 		this.comentarios = new ArrayList<Comentario>();

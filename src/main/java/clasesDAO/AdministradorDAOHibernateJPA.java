@@ -1,17 +1,15 @@
 package clasesDAO;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Query;
 
-import clases.Administrador;
-import clases.Comentario;
-import clases.Publicacion;
+import clases.*;
 import entityManager.EMF;
 import interfacesDAO.AdministradorDAO;
 
 public class AdministradorDAOHibernateJPA extends GenericDAOHibernateJPA<Administrador> implements AdministradorDAO {
+	
 	public AdministradorDAOHibernateJPA(){
 		super(Administrador.class);
 	}

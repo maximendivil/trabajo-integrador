@@ -12,7 +12,7 @@ public abstract class Persona implements java.io.Serializable{
 	protected String nombre;
 	protected String apellido;
 	protected Date fechaNacimiento;
-	protected double dni;
+	protected long dni;
 	protected String email;
 	protected int rol; // 1 -> Admin, 2 -> Profesor, 3 -> Alumno, 4 -> Publicador
 	protected String usuario;
@@ -23,7 +23,7 @@ public abstract class Persona implements java.io.Serializable{
 		
 	}
 	
-	public Persona(String nombre, String apellido, Date fechaNacimiento, double dni, String email, int rol, String usuario, String contraseña){
+	public Persona(String nombre, String apellido, Date fechaNacimiento, long dni, String email, int rol, String usuario, String contraseña){
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.fechaNacimiento = fechaNacimiento;
@@ -67,11 +67,11 @@ public abstract class Persona implements java.io.Serializable{
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public double getDni() {
+	public long getDni() {
 		return dni;
 	}
 
-	public void setDni(double dni) {
+	public void setDni(long dni) {
 		this.dni = dni;
 	}
 

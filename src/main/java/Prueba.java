@@ -213,6 +213,46 @@ public class Prueba extends HttpServlet {
 			aux6 = it6.next();
 			System.out.println("Cartelera: " + aux6.getNombre());
 		}
+		
+		System.out.println("\nCARTELERAS HABILITADAS PARA EL PROFESOR ROSSI:");
+		habilitadas = (ArrayList<Cartelera>) FactoryDAO.getProfesorDAO().obtenerCarteleras(p2.getId());
+		it6 = habilitadas.iterator();
+		while (it6.hasNext()){
+			aux6 = it6.next();
+			System.out.println("Cartelera: " + aux6.getNombre());
+		}
+		
+		System.out.println("\nCARTELERAS HABILITADAS PARA EL PROFESOR PEREZ:");
+		habilitadas = (ArrayList<Cartelera>) FactoryDAO.getProfesorDAO().obtenerCarteleras(p3.getId());
+		it6 = habilitadas.iterator();
+		while (it6.hasNext()){
+			aux6 = it6.next();
+			System.out.println("Cartelera: " + aux6.getNombre());
+		}
+		
+		System.out.println("\nCARTELERAS HABILITADAS PARA EL PUBLICADOR 1:");
+		habilitadas = (ArrayList<Cartelera>) FactoryDAO.getPublicadorDAO().obtenerCarteleras(pu1.getId());
+		it6 = habilitadas.iterator();
+		while (it6.hasNext()){
+			aux6 = it6.next();
+			System.out.println("Cartelera: " + aux6.getNombre());
+		}
+		
+		System.out.println("\nCARTELERAS HABILITADAS PARA EL PUBLICADOR 2:");
+		habilitadas = (ArrayList<Cartelera>) FactoryDAO.getPublicadorDAO().obtenerCarteleras(pu2.getId());
+		it6 = habilitadas.iterator();
+		while (it6.hasNext()){
+			aux6 = it6.next();
+			System.out.println("Cartelera: " + aux6.getNombre());
+		}
+		
+		System.out.println("\nCARTELERAS HABILITADAS PARA EL PUBLICADOR 3:");
+		habilitadas = (ArrayList<Cartelera>) FactoryDAO.getPublicadorDAO().obtenerCarteleras(pu3.getId());
+		it6 = habilitadas.iterator();
+		while (it6.hasNext()){
+			aux6 = it6.next();
+			System.out.println("Cartelera: " + aux6.getNombre());
+		}
 	}
 
 	/**

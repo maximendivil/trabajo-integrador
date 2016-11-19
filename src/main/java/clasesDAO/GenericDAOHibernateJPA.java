@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
+import clases.Comentario;
 import entityManager.EMF;
 import interfacesDAO.GenericDAO;
 
@@ -36,10 +37,27 @@ public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 
 	@Override
 	public T eliminar(long id) {
-		T entity = EMF.getEMF().createEntityManager().find(this.getPersistentClass(), id);
+		EntityManager em = EMF.getEMF().createEntityManager();
+		EntityTransaction tx = null;
+		tx = em.getTransaction();
+		tx.begin();
+		T entity = em.find(this.getPersistentClass(), id);
 		if (entity != null) {
-			this.borrar(entity); 
-		} 
+			try {				
+				em.remove(entity);
+				em.flush();
+				tx.commit();
+			} 
+			catch (RuntimeException e) { 
+				if ( tx != null && tx.isActive() ) { 
+					tx.rollback();
+					System.out.println(e.getMessage());
+					throw e;
+					// escribir en un log o mostrar un mensaje } }
+				}
+			}
+		}
+		em.close();
 		return entity; 
 	}
 	
@@ -49,7 +67,7 @@ public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 		try { 
 			tx = em.getTransaction();
 			tx.begin();
-			em.remove(entity);
+			em.remove(em.merge(entity));
 			tx.commit();
 		} 
 		catch (RuntimeException e) { 
@@ -109,6 +127,14 @@ public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 			em.close();
 		}
 		return entity;
+	}
+	
+	@Override
+	public List<Comentario> obtenerComentarios(long id){
+		Query q = EMF.getEMF().createEntityManager().createQuery("from " + getPersistentClass().getSimpleName() + " p where p.id=:id" );
+		q.setParameter("id", id);
+		List<Comentario> resultado = (List<Comentario>) q.getResultList();
+		return resultado;
 	}
 
 	public Class<T> getPersistentClass() {

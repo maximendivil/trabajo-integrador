@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Entity
 public class Comentario implements java.io.Serializable{
 	@Id @GeneratedValue
-	private int id;
+	private long id;
 	private String texto;
 	private Date fechaCreacion;
 	@ManyToOne(optional=false)
@@ -27,11 +27,11 @@ public class Comentario implements java.io.Serializable{
 		this.creador = creador;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -57,5 +57,13 @@ public class Comentario implements java.io.Serializable{
 
 	public void setCreador(Persona creador) {
 		this.creador = creador;
+	}
+	
+	public Publicacion getPublicacion() {
+		return publicacion;
+	}
+
+	public void setPublicacion(Publicacion publicacion) {
+		this.publicacion = publicacion;
 	}
 }

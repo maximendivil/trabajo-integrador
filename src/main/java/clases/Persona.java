@@ -1,14 +1,17 @@
 package clases;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy=InheritanceType.JOINED)
 public abstract class Persona implements java.io.Serializable{
 	//Variables de instancia
 	@Id @GeneratedValue
-	protected int id;
+	protected long id;
 	protected String nombre;
 	protected String apellido;
 	protected Date fechaNacimiento;
@@ -17,6 +20,8 @@ public abstract class Persona implements java.io.Serializable{
 	protected int rol; // 1 -> Admin, 2 -> Profesor, 3 -> Alumno, 4 -> Publicador
 	protected String usuario;
 	protected String contraseña;
+	@OneToMany(mappedBy="creador",cascade={CascadeType.REMOVE})
+	private List<Comentario> comentarios;
 
 	//Constructores
 	public Persona(){
@@ -32,14 +37,15 @@ public abstract class Persona implements java.io.Serializable{
 		this.rol = rol;
 		this.usuario = usuario;
 		this.contraseña = contraseña;
+		this.comentarios = new ArrayList<Comentario>();
 	}
 	
 	//Getters y Setters
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -105,5 +111,17 @@ public abstract class Persona implements java.io.Serializable{
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public List<Comentario> getComentarios() {
+		return comentarios;
+	}
+
+	public void setComentarios(List<Comentario> comentarios) {
+		this.comentarios = comentarios;
+	}
+	
+	public void agregarComentario(Comentario c){
+		this.comentarios.add(c);
 	}
 }

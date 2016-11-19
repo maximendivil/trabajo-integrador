@@ -8,5 +8,4 @@ import clases.Publicacion;
 
 public interface AdministradorDAO extends GenericDAO<Administrador>{
 	List<Publicacion> obtenerPublicaciones(long id);
-	List<Comentario> obtenerComentarios(long id);
 }

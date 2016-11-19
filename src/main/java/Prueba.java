@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import clases.Administrador;
 import clases.Alumno;
 import clases.Cartelera;
+import clases.Comentario;
 import clases.Profesor;
 import clases.Publicacion;
 import clases.Publicador;
@@ -40,7 +41,7 @@ public class Prueba extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//Creamoas las carteleras
+		//Creamos las carteleras
 		Cartelera c = new Cartelera("Ingresantes", new Date());
 		Cartelera c1 = new Cartelera("Primer año", new Date());
 		Cartelera c2 = new Cartelera("Segundo año", new Date());
@@ -61,7 +62,7 @@ public class Prueba extends HttpServlet {
 		
 		borrarCarteleras(c1,c2,c3,c4,c5,c7);*/
 		
-		//Creamos usuarios
+		//Creamos administradores
 		Administrador a1 = new Administrador("Facundo","Oreja",new Date(),30123456,"admin1@admin.com",1,"admin1","admin");
 		Administrador a2 = new Administrador("Viejo","Cuida Bici",new Date(),30123456,"admin2@admin.com",1,"admin2","admin");
 		Administrador a3 = new Administrador("John","Maddog",new Date(),30123456,"admin3@admin.com",1,"admin3","admin");
@@ -89,6 +90,38 @@ public class Prueba extends HttpServlet {
 		
 		guardarPublicadores(pu1,pu2,pu3);
 		
+		//Creamos las publicaciones
+		Publicacion publicacion = new Publicacion("Prueba","Es una prueba","casa",new Date(),p1);
+		publicacion.setCartelera(c);
+		Publicacion publicacion2 = new Publicacion("Prueba2","Es una prueba","casa",new Date(),p2);
+		publicacion2.setCartelera(c1);
+		Publicacion publicacion3 = new Publicacion("Prueba3","Es una prueba","casa",new Date(),p3);
+		publicacion3.setCartelera(c2);
+		Publicacion publicacion4 = new Publicacion("Prueba4","Es una prueba","casa",new Date(),pu1);
+		publicacion4.setCartelera(c3);
+		Publicacion publicacion5 = new Publicacion("Prueba5","Es una prueba","casa",new Date(),pu2);
+		publicacion5.setCartelera(c4);
+		Publicacion publicacion6 = new Publicacion("Prueba6","Es una prueba","casa",new Date(),pu3);
+		publicacion6.setCartelera(c5);
+		
+		guardarPublicaciones(publicacion,publicacion2,publicacion3,publicacion4,publicacion5,publicacion6);
+		
+		//Creamos comentarios
+		Comentario co1 = new Comentario("Comentario 1",new Date(),al1);
+		co1.setPublicacion(publicacion);		
+		Comentario co2 = new Comentario("Comentario 2",new Date(),al2);
+		co2.setPublicacion(publicacion2);
+		Comentario co3 = new Comentario("Comentario 3",new Date(),al3);
+		co3.setPublicacion(publicacion3);
+		Comentario co4 = new Comentario("Comentario 4",new Date(),p1);
+		co4.setPublicacion(publicacion4);
+		Comentario co5 = new Comentario("Comentario 5",new Date(),p2);
+		co5.setPublicacion(publicacion5);
+		Comentario co6 = new Comentario("Comentario 6",new Date(),pu1);
+		co6.setPublicacion(publicacion6);
+		
+		guardarComentarios(co1,co2,co3,co4,co5,co6);
+		
 		//Agregar intereses al alumno Mendivil
 		al1.agregarInteres(c8);
 		al1.agregarInteres(c4);
@@ -100,7 +133,7 @@ public class Prueba extends HttpServlet {
 		al2.agregarInteres(c3);
 		al2.agregarInteres(c4);
 		
-		//Agregar intereses al alumno Ringuelet
+		//Agregar intereses al alumno La Frazia
 		al3.agregarInteres(c6);
 		al3.agregarInteres(c4);
 		al3.agregarInteres(c5);
@@ -181,6 +214,24 @@ public class Prueba extends HttpServlet {
 			System.out.println("Cartelera: " + aux5.getNombre());
 		}
 		
+		System.out.println("\nLISTADO DE PUBLICACIONES:");
+		ArrayList<Publicacion> publicaciones = (ArrayList<Publicacion>) FactoryDAO.getPublicacionDAO().obtenerTodos();
+		Iterator<Publicacion> it9 = publicaciones.iterator();
+		Publicacion aux9;
+		while (it9.hasNext()){
+			aux9 = it9.next();
+			System.out.println("Titulo: " + aux9.getTitulo() + " descripción: " + aux9.getDescripcion());
+		}
+		
+		System.out.println("\nLISTADO DE COMENTARIOS:");
+		ArrayList<Comentario> comentarios = (ArrayList<Comentario>) FactoryDAO.getComentarioDAO().obtenerTodos();
+		Iterator<Comentario> it10 = comentarios.iterator();
+		Comentario aux10;
+		while (it10.hasNext()){
+			aux10 = it10.next();
+			System.out.println("Comentario: " + aux10.getTexto());
+		}
+		
 		System.out.println("\nCARTELERAS QUE PRESENTÓ INTERES EL ALUMNO MENDIVIL:");
 		ArrayList<Cartelera> intereses = (ArrayList<Cartelera>) FactoryDAO.getAlumnoDAO().obtenerIntereses(al1.getId());
 		Iterator<Cartelera> it6 = intereses.iterator();
@@ -253,6 +304,28 @@ public class Prueba extends HttpServlet {
 			aux6 = it6.next();
 			System.out.println("Cartelera: " + aux6.getNombre());
 		}
+		
+		try { 
+			/*a2 = FactoryDAO.getAdministradorDAO().eliminar(a2.getId());
+			pu2 = FactoryDAO.getPublicadorDAO().eliminar(pu2.getId());
+			al2 = FactoryDAO.getAlumnoDAO().eliminar(al2.getId());
+			p3 = FactoryDAO.getProfesorDAO().eliminar(p3.getId());
+			publicacion2 = FactoryDAO.getPublicacionDAO().eliminar(publicacion2.getId());
+			co2 = FactoryDAO.getComentarioDAO().eliminar(co2.getId());*/
+			eliminarCartelera(c8);
+			//c8 = FactoryDAO.getCarteleraDAO().eliminar(c8.getId());
+			System.out.println("\nSe borraron los objetos correctamente");
+		}
+		catch (Exception e){
+			System.out.println(e.getMessage());
+		}
+		
+	}
+	
+	private void eliminarCartelera(Cartelera c){
+		//FactoryDAO.getCarteleraDAO().eliminarCartelerasDeIntereses(c.getId());
+		//c.setAlumnosInteresados(null);
+		FactoryDAO.getCarteleraDAO().eliminar(c);
 	}
 
 	/**
@@ -277,6 +350,36 @@ public class Prueba extends HttpServlet {
 			System.out.println("Se guardaron las carteleras correctamente");
 		}
 		catch (Exception e){
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	private void guardarPublicaciones(Publicacion p1, Publicacion p2, Publicacion p3, Publicacion p4, Publicacion p5, Publicacion p6){
+		try {
+			p1 = FactoryDAO.getPublicacionDAO().guardar(p1);
+			p2 = FactoryDAO.getPublicacionDAO().guardar(p2);
+			p3 = FactoryDAO.getPublicacionDAO().guardar(p3);
+			p4 = FactoryDAO.getPublicacionDAO().guardar(p4);
+			p5 = FactoryDAO.getPublicacionDAO().guardar(p5);
+			p6 = FactoryDAO.getPublicacionDAO().guardar(p6);
+			System.out.println("Se guardaron las publicaciones correctamente");
+		}
+		catch (Exception e){
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	private void guardarComentarios(Comentario co1, Comentario co2, Comentario co3, Comentario co4, Comentario co5, Comentario co6){
+		try {
+			co1 = FactoryDAO.getComentarioDAO().guardar(co1);
+			co2 = FactoryDAO.getComentarioDAO().guardar(co2);
+			co3 = FactoryDAO.getComentarioDAO().guardar(co3);
+			co4 = FactoryDAO.getComentarioDAO().guardar(co4);
+			co5 = FactoryDAO.getComentarioDAO().guardar(co5);
+			co6 = FactoryDAO.getComentarioDAO().guardar(co6);
+			System.out.println("Se guardaron los comentarios correctamente");
+		}
+		catch(Exception e){
 			System.out.println(e.getMessage());
 		}
 	}

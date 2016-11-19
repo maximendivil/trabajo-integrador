@@ -12,7 +12,7 @@ public class Cartelera implements java.io.Serializable {
 	private long id;
 	private String nombre;
 	private Date fechaCreacion;
-	@OneToMany(mappedBy="cartelera")
+	@OneToMany(mappedBy="cartelera",cascade={CascadeType.REMOVE})
 	private List<Publicacion> publicaciones;
 	@ManyToMany(mappedBy="intereses")
 	private List<Alumno> alumnosInteresados;

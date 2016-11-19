@@ -28,15 +28,8 @@ public class ProfesorDAOHibernateJPA extends GenericDAOHibernateJPA<Profesor> im
 	@Override
 	public List<Cartelera> obtenerCarteleras(long id) {
 		Query q = EMF.getEMF().createEntityManager().createQuery("SELECT c FROM Profesor p JOIN p.cartelerasHabilitadas c WHERE p.id=:id");
-		q.setParameter("id", (int) id);
+		q.setParameter("id", id);
 		List<Cartelera> resultado = (List<Cartelera>) q.getResultList();
-		return resultado;
-	}
-
-	@Override
-	public List<Comentario> obtenerComentarios(long id) {
-		Query q = EMF.getEMF().createEntityManager().createQuery("Select * from Profesor p INNER JOIN Comentario c on a.id=c.PERSONA_ID");
-		List<Comentario> resultado = (List<Comentario>) q.getResultList();
 		return resultado;
 	}
 

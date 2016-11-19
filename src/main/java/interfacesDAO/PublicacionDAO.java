@@ -10,6 +10,5 @@ import clases.Profesor;
 import clases.Publicacion;
 
 public interface PublicacionDAO extends GenericDAO<Publicacion>{
-	List<Publicacion> obtenerPublicaciones(long id);
 	List<Comentario> obtenerComentarios(long id);
 }

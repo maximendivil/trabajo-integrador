@@ -9,12 +9,12 @@ import javax.persistence.*;
 @Entity
 public class Publicacion implements java.io.Serializable{
 	@Id @GeneratedValue
-	private int id;
+	private long id;
 	private String titulo;
 	private String descripcion;
 	private String multimedia;
 	private Date fechaCreacion;
-	@OneToMany(mappedBy="publicacion")
+	@OneToMany(mappedBy="publicacion",cascade={CascadeType.REMOVE})
 	private List<Comentario> comentarios;
 	@ManyToOne(optional=false)
 	@JoinColumn(name="CARTELERA_ID")
@@ -36,11 +36,11 @@ public class Publicacion implements java.io.Serializable{
 		this.comentarios = new ArrayList<Comentario>();
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

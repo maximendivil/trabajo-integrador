@@ -16,18 +16,11 @@ public class AlumnoDAOHibernateJPA extends GenericDAOHibernateJPA<Alumno> implem
 	public AlumnoDAOHibernateJPA(){
 		super(Alumno.class);
 	}
-	
-	@Override
-	public List<Comentario> obtenerComentarios(long id) {
-		Query q = EMF.getEMF().createEntityManager().createQuery("Select * from Alumno a INNER JOIN Comentario c on a.id=c.PERSONA_ID");
-		List<Comentario> resultado = (List<Comentario>) q.getResultList();
-		return resultado;
-	}
 
 	@Override
 	public List<Cartelera> obtenerIntereses(long id) { //Ver como guardar intereses
 		Query q = EMF.getEMF().createEntityManager().createQuery("SELECT i FROM Alumno a INNER JOIN a.intereses i WHERE a.id=:id");
-		q.setParameter("id",(int) id);
+		q.setParameter("id",id);
 		List<Cartelera> resultado = (List<Cartelera>) q.getResultList();
 		return resultado;
 	}

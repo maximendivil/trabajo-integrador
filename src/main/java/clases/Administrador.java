@@ -7,11 +7,11 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-public class Administrador extends Persona implements java.io.Serializable {
-	@OneToMany(mappedBy="creador")
+public class Administrador extends Publicador implements java.io.Serializable {
+	/*@OneToMany(mappedBy="creador")
 	private List<Publicacion> publicaciones;
 	@OneToMany(mappedBy="creador")
-	private List<Comentario> comentarios;
+	private List<Comentario> comentarios;*/
 	
 	public Administrador(){
 		
@@ -19,11 +19,11 @@ public class Administrador extends Persona implements java.io.Serializable {
 	
 	public Administrador(String nombre, String apellido, Date fechaNacimiento, long dni, String email, int rol, String usuario, String contraseña){
 		super(nombre, apellido, fechaNacimiento, dni, email, rol, usuario, contraseña);
-		this.publicaciones = new ArrayList<Publicacion>();
-		this.comentarios = new ArrayList<Comentario>();
+		/*this.publicaciones = new ArrayList<Publicacion>();
+		this.comentarios = new ArrayList<Comentario>();*/
 	}
 
-	public List<Publicacion> getPublicaciones() {
+	/*public List<Publicacion> getPublicaciones() {
 		return publicaciones;
 	}
 
@@ -37,5 +37,5 @@ public class Administrador extends Persona implements java.io.Serializable {
 
 	public void setComentarios(List<Comentario> comentarios) {
 		this.comentarios = comentarios;
-	}
+	}*/
 }

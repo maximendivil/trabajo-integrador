@@ -23,7 +23,7 @@ public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 	public void setEntityManager(EntityManager em){
 		this.entityManager = em;
 	}
-	//asasas
+	//asa
 	public EntityManager getEntityManager() {
 		return entityManager;
 	}

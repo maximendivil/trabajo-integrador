@@ -3,7 +3,6 @@ package clasesDAO;
 import java.util.List;
 
 import javax.persistence.Query;
-
 import clases.*;
 import entityManager.EMF;
 import interfacesDAO.AdministradorDAO;

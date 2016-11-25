@@ -9,6 +9,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+
 import clases.Comentario;
 import entityManager.EMF;
 import interfacesDAO.GenericDAO;

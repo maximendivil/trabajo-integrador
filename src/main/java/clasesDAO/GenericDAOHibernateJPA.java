@@ -12,10 +12,21 @@ import clases.Comentario;
 import entityManager.EMF;
 import interfacesDAO.GenericDAO;
 
+@Transactional
 public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 
 	protected Class<T> persistentClass;
+	private EntityManager entityManager;
 	
+	@PersistenceContext
+	public void setEntityManager(EntityManager em){
+		this.entityManager = em;
+	}
+	
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+		
 	public GenericDAOHibernateJPA(Class<T> entity){
 		this.persistentClass = entity;
 	}
@@ -37,95 +48,25 @@ public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 
 	@Override
 	public T eliminar(long id) {
-		EntityManager em = EMF.getEMF().createEntityManager();
-		EntityTransaction tx = null;
-		tx = em.getTransaction();
-		tx.begin();
-		T entity = em.find(this.getPersistentClass(), id);
-		if (entity != null) {
-			try {				
-				em.remove(entity);
-				em.flush();
-				tx.commit();
-			} 
-			catch (RuntimeException e) { 
-				if ( tx != null && tx.isActive() ) { 
-					tx.rollback();
-					System.out.println(e.getMessage());
-					throw e;
-					// escribir en un log o mostrar un mensaje } }
-				}
-			}
-		}
-		em.close();
+		T entity;
+		this.getEntityManager().remove(entity);
+		this.getEntityManager().flush();
 		return entity; 
 	}
 	
 	private void borrar(T entity) { 
-		EntityManager em = EMF.getEMF().createEntityManager();
-		EntityTransaction tx = null;
-		try { 
-			tx = em.getTransaction();
-			tx.begin();
-			em.remove(em.merge(entity));
-			tx.commit();
-		} 
-		catch (RuntimeException e) { 
-			if ( tx != null && tx.isActive() ) { 
-				tx.rollback();
-				System.out.println(e.getMessage());
-				throw e;
-				// escribir en un log o mostrar un mensaje } }
-			}
-		}
-		finally { 
-			em.close(); 
-		}
+		this.getEntityManager().remove(this.getEntityManager().merge(entity));
 	}	
 
 	@Override
 	public T guardar(T entity) {
-		EntityManager em = EMF.getEMF().createEntityManager();
-		EntityTransaction tx = null;
-		try {
-			tx = em.getTransaction();
-			tx.begin();
-			em.persist(entity);
-			tx.commit();
-		}
-		catch (RuntimeException e) {
-			if ( tx != null && tx.isActive() ) {
-				tx.rollback();
-				System.out.println(e.getMessage());
-				throw e;
-			}
-		}
-		finally { 
-			em.close();
-		}
+		this.getEntityManager().persist(entity);
 		return entity;
 	}
 	
 	@Override
 	public T modificar(T entity){
-		EntityManager em = EMF.getEMF().createEntityManager();
-		EntityTransaction tx = null;
-		try {
-			tx = em.getTransaction();
-			tx.begin();
-			em.merge(entity);
-			tx.commit();
-		}
-		catch (RuntimeException e) {
-			if ( tx != null && tx.isActive() ) {
-				tx.rollback();
-				System.out.println(e.getMessage());
-				throw e;
-			}
-		}
-		finally { 
-			em.close();
-		}
+		this.getEntityManager().merge(entity);
 		return entity;
 	}
 	

@@ -8,6 +8,7 @@ import clases.*;
 import entityManager.EMF;
 import interfacesDAO.AdministradorDAO;
 
+@Repository
 public class AdministradorDAOHibernateJPA extends GenericDAOHibernateJPA<Administrador> implements AdministradorDAO {
 	
 	public AdministradorDAOHibernateJPA(){

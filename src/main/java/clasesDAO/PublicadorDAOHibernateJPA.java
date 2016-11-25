@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Repository;
+
 import clases.Cartelera;
 import clases.Comentario;
 import clases.Publicacion;
@@ -11,6 +13,7 @@ import clases.Publicador;
 import entityManager.EMF;
 import interfacesDAO.PublicadorDAO;
 
+@Repository
 public class PublicadorDAOHibernateJPA extends GenericDAOHibernateJPA<Publicador> implements PublicadorDAO {
 	
 	public PublicadorDAOHibernateJPA() {

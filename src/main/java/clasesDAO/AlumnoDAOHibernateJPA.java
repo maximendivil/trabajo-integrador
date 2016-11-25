@@ -5,12 +5,15 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Repository;
+
 import clases.Alumno;
 import clases.Cartelera;
 import clases.Comentario;
 import entityManager.EMF;
 import interfacesDAO.AlumnoDAO;
 
+@Repository
 public class AlumnoDAOHibernateJPA extends GenericDAOHibernateJPA<Alumno> implements AlumnoDAO {	
 	
 	public AlumnoDAOHibernateJPA(){

@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Repository;
+
 import clases.Cartelera;
 import clases.Comentario;
 import clases.Profesor;
@@ -12,6 +14,7 @@ import clases.Publicacion;
 import entityManager.EMF;
 import interfacesDAO.ProfesorDAO;
 
+@Repository
 public class ProfesorDAOHibernateJPA extends GenericDAOHibernateJPA<Profesor> implements ProfesorDAO {
 
 	public ProfesorDAOHibernateJPA() {

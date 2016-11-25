@@ -7,12 +7,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Repository;
+
 import clases.Alumno;
 import clases.Cartelera;
 import clases.Publicacion;
 import entityManager.EMF;
 import interfacesDAO.CarteleraDAO;
 
+@Repository
 public class CarteleraDAOHibernateJPA extends GenericDAOHibernateJPA<Cartelera> implements CarteleraDAO {
 	public CarteleraDAOHibernateJPA(){
 		super(Cartelera.class);

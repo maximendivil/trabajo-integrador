@@ -138,7 +138,7 @@ public class Prueba extends HttpServlet {
 		al3.agregarInteres(c4);
 		al3.agregarInteres(c5);
 		
-		modificarAlumnos(al1, al2, al3);
+		/*modificarAlumnos(al1, al2, al3);
 		
 		//Agregar carteleras habilitadas a la profesora Fava
 		p1.agregarCartelera(c2);
@@ -311,14 +311,14 @@ public class Prueba extends HttpServlet {
 			al2 = FactoryDAO.getAlumnoDAO().eliminar(al2.getId());
 			p3 = FactoryDAO.getProfesorDAO().eliminar(p3.getId());
 			publicacion2 = FactoryDAO.getPublicacionDAO().eliminar(publicacion2.getId());
-			co2 = FactoryDAO.getComentarioDAO().eliminar(co2.getId());*/
-			eliminarCartelera(c8);
+			co2 = FactoryDAO.getComentarioDAO().eliminar(co2.getId());
+			//eliminarCartelera(c8);
 			//c8 = FactoryDAO.getCarteleraDAO().eliminar(c8.getId());
-			System.out.println("\nSe borraron los objetos correctamente");
+			//System.out.println("\nSe borraron los objetos correctamente");
 		}
 		catch (Exception e){
 			System.out.println(e.getMessage());
-		}
+		}*/
 		
 	}
 	

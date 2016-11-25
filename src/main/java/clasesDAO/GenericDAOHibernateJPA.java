@@ -9,6 +9,8 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import clases.Comentario;
 import entityManager.EMF;
 import interfacesDAO.GenericDAO;

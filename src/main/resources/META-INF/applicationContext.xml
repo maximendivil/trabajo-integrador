@@ -11,7 +11,7 @@ http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver"/>
 		<!-- <property name="driverClass" value="com.mysql.jdbc.Driver"/>   sin usan .properties --> 
-		<property name="jdbcUrl" value="dbc:mysql://localhost:3306/cartelera"/>
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/cartelera"/>
 		<property name="user" value="root"/> <property name="password" value="root"/>
 		<property name="acquireIncrement" value="2"/>
 		<property name="minPoolSize" value="20"/> 

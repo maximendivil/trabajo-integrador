@@ -9,6 +9,10 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+<<<<<<< HEAD
+=======
+import org.springframework.transaction.annotation.Transactional;
+>>>>>>> da41e610890dd5feb0fc017e3ea114f52386e844
 
 import clases.Comentario;
 import entityManager.EMF;

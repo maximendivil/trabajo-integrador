@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import clases.Comentario;
@@ -22,7 +23,7 @@ public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 	public void setEntityManager(EntityManager em){
 		this.entityManager = em;
 	}
-	
+	//asasas
 	public EntityManager getEntityManager() {
 		return entityManager;
 	}

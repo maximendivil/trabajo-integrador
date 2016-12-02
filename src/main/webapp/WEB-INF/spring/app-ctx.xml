@@ -9,7 +9,7 @@ http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context-4.2.xsd
 http://www.springframework.org/schema/tx
 http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
-	<context:component-scan base-package="clasesDAO"/>
+	<context:component-scan base-package="ttps"/>
 	<context:property-placeholder location="classpath:jdbc.properties"/>
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver"/>
@@ -18,19 +18,19 @@ http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
 		<property name="password" value=""/>
 		<property name="acquireIncrement" value="2"/>
 		<property name="minPoolSize" value="20"/> 
-		<property name="maxPoolSize" value="50"/> 
+		<property name="maxPoolSize" value="60"/> 
 		<property name="maxIdleTime" value="600"/> 
 	</bean>
 	<bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"> 
 		<property name="dataSource" ref="dataSource" /> 
-		<property name="packagesToScan" value="clasesDAO" /> 
+		<property name="packagesToScan" value="ttps" /> 
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
 		</property> 
 		<property name="jpaProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop> 
-				<prop key="hibernate.hbm2ddl.auto">create</prop> 
+				<prop key="hibernate.hbm2ddl.auto">update</prop> 
 				<prop key="hibernate.format_sql">true</prop> 
 				<prop key="hibernate.show_sql">true</prop> 
 			</props> 

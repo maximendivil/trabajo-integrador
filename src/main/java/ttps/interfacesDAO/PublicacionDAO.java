@@ -11,4 +11,5 @@ import ttps.clases.Publicacion;
 
 public interface PublicacionDAO extends GenericDAO<Publicacion>{
 	List<Comentario> obtenerComentarios(long id);
+	void eliminar2(long id);
 }

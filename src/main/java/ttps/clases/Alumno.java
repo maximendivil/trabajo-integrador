@@ -1,20 +1,28 @@
 package ttps.clases;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Alumno extends Persona implements java.io.Serializable{
 	//Variables de instancia
 	private String legajo;
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name="intereses",
 		joinColumns=@JoinColumn(name="PERSONA_ID",referencedColumnName="id"),
 		inverseJoinColumns=@JoinColumn(name="CARTELERA_ID",referencedColumnName="id")
 		)
-	private List<Cartelera> intereses;
+	private Set<Cartelera> intereses;
 	
 	//Constructores
 	public Alumno(){
@@ -24,7 +32,7 @@ public class Alumno extends Persona implements java.io.Serializable{
 	public Alumno(String nombre, String apellido, Date fechaNacimiento, long dni, String email, int rol, String usuario, String contraseña, String legajo){
 		super(nombre, apellido, fechaNacimiento, dni, email, rol, usuario, contraseña);
 		this.legajo = legajo;
-		this.intereses = new ArrayList<Cartelera>();
+		this.intereses = new HashSet<Cartelera>();
 	}
 	
 	//Getters y setters
@@ -36,11 +44,11 @@ public class Alumno extends Persona implements java.io.Serializable{
 		this.legajo = legajo;
 	}
 
-	public List<Cartelera> getIntereses() {
+	public Set<Cartelera> getIntereses() {
 		return intereses;
 	}
 
-	public void setIntereses(List<Cartelera> intereses) {
+	public void setIntereses(Set<Cartelera> intereses) {
 		this.intereses = intereses;
 	}
 	

@@ -1,17 +1,29 @@
 package ttps.clases;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public abstract class Persona implements java.io.Serializable{
 	//Variables de instancia
 	@Id @GeneratedValue
 	protected long id;
+	protected int borrado;
 	protected String nombre;
 	protected String apellido;
 	protected Date fechaNacimiento;
@@ -20,8 +32,8 @@ public abstract class Persona implements java.io.Serializable{
 	protected int rol; // 1 -> Admin, 2 -> Profesor, 3 -> Alumno, 4 -> Publicador
 	protected String usuario;
 	protected String contraseña;
-	@OneToMany(mappedBy="creador",cascade={CascadeType.REMOVE})
-	private List<Comentario> comentarios;
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="creador",cascade={CascadeType.REMOVE})
+	private Set<Comentario> comentarios;
 
 	//Constructores
 	public Persona(){
@@ -37,7 +49,8 @@ public abstract class Persona implements java.io.Serializable{
 		this.rol = rol;
 		this.usuario = usuario;
 		this.contraseña = contraseña;
-		this.comentarios = new ArrayList<Comentario>();
+		this.borrado = 0;
+		this.comentarios = new HashSet<Comentario>();
 	}
 	
 	//Getters y Setters
@@ -113,15 +126,23 @@ public abstract class Persona implements java.io.Serializable{
 		this.email = email;
 	}
 
-	public List<Comentario> getComentarios() {
+	public Set<Comentario> getComentarios() {
 		return comentarios;
 	}
 
-	public void setComentarios(List<Comentario> comentarios) {
+	public void setComentarios(Set<Comentario> comentarios) {
 		this.comentarios = comentarios;
 	}
 	
 	public void agregarComentario(Comentario c){
 		this.comentarios.add(c);
+	}
+
+	public int getBorrado() {
+		return borrado;
+	}
+
+	public void setBorrado(int borrado) {
+		this.borrado = borrado;
 	}
 }

@@ -11,6 +11,7 @@ import javax.persistence.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 import ttps.clases.Comentario;
+import ttps.clases.Publicacion;
 import ttps.entityManager.EMF;
 import ttps.interfacesDAO.GenericDAO;
 
@@ -35,26 +36,26 @@ public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 	
 	@Override
 	public List<T> obtenerTodos() {
-		Query q = this.getEntityManager().createQuery("from " + getPersistentClass().getSimpleName());
+		Query q = this.getEntityManager().createQuery("from " + getPersistentClass().getSimpleName() + " t where t.borrado=0");
 		List<T> resultado = (List<T>) q.getResultList();
 		return resultado;
 	}
 
 	@Override
 	public T obtener(long id) {
-		Query q = this.getEntityManager().createQuery("Select * from " + getPersistentClass().getSimpleName() + "Where id = :id");
+		Query q = this.getEntityManager().createQuery("from " + getPersistentClass().getSimpleName() + " Where id = :id");
 		q.setParameter("id", id);
 		T resultado = (T) q.getSingleResult();
 		return resultado;
 	}
 
-	@Override
+	//@Override
 	public T eliminar(long id) {
 		T entity = null;
 		this.getEntityManager().remove(entity);
 		this.getEntityManager().flush();
-		return entity; 
-	}
+		return entity;
+	}	
 	
 	private void borrar(T entity) { 
 		this.getEntityManager().remove(this.getEntityManager().merge(entity));

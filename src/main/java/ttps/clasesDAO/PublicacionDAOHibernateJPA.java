@@ -18,4 +18,14 @@ public class PublicacionDAOHibernateJPA extends GenericDAOHibernateJPA<Publicaci
 	public List<Comentario> obtenerComentarios(long id){
 		return null;
 	}
+	@Override
+	public void eliminar2(long id) {
+		/*T entity = null;
+		this.getEntityManager().remove(entity);
+		this.getEntityManager().flush();
+		return entity;*/
+		Publicacion p = (Publicacion) this.obtener(id);
+		p.setBorrado(1);
+		this.getEntityManager().merge(p);
+	}
 }

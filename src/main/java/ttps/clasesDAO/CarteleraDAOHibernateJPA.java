@@ -30,7 +30,7 @@ public class CarteleraDAOHibernateJPA extends GenericDAOHibernateJPA<Cartelera> 
 
 	@Override
 	public List<Alumno> obtenerAlumnosInteresados(long id) {
-		Query q = EMF.getEMF().createEntityManager().createQuery("Select * from Cartelera c INNER JOIN c.alumnosInteresados a Where c.id=:id");
+		Query q = getEntityManager().createQuery("select a from Cartelera c JOIN c.alumnosInteresados a Where c.id=:id");
 		q.setParameter("id", id);
 		List<Alumno> resultado = (List<Alumno>) q.getResultList();
 		return resultado;
@@ -40,6 +40,13 @@ public class CarteleraDAOHibernateJPA extends GenericDAOHibernateJPA<Cartelera> 
 	public void eliminarCartelerasDeIntereses(long id) {
 		Query q = EMF.getEMF().createEntityManager().createNativeQuery("DELETE FROM intereses WHERE c.id=:id");
 		q.setParameter("id", id);
+	}	
+	
+	@Override
+	public void remover(long id){
+		Cartelera actual = this.obtener(id);
+		actual.setBorrado(1);
+		this.getEntityManager().merge(actual);
 	}
 	
 	@Override

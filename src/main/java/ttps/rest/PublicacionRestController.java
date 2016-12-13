@@ -78,7 +78,7 @@ public class PublicacionRestController {
         	return new ResponseEntity<Publicacion>(HttpStatus.NOT_FOUND);
     	}
  
-        publicacionDAO.eliminar2(id);
+        publicacionDAO.remover(id);
         return new ResponseEntity<Publicacion>(HttpStatus.NO_CONTENT);
     }
 }

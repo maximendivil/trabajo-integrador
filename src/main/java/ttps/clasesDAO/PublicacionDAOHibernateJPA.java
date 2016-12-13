@@ -19,11 +19,7 @@ public class PublicacionDAOHibernateJPA extends GenericDAOHibernateJPA<Publicaci
 		return null;
 	}
 	@Override
-	public void eliminar2(long id) {
-		/*T entity = null;
-		this.getEntityManager().remove(entity);
-		this.getEntityManager().flush();
-		return entity;*/
+	public void remover(long id) {
 		Publicacion p = (Publicacion) this.obtener(id);
 		p.setBorrado(1);
 		this.getEntityManager().merge(p);

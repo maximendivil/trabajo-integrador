@@ -98,5 +98,7 @@ public class Cartelera implements java.io.Serializable {
 		this.borrado = borrado;
 	}
 	
-	
+	public void agregarPublicacion(Publicacion publicacion){
+		this.publicaciones.add(publicacion);
+	}
 }

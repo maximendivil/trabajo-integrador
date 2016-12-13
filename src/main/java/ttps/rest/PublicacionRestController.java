@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import ttps.clases.Alumno;
 import ttps.clases.Publicacion;
 import ttps.interfacesDAO.PublicacionDAO;
 
@@ -27,13 +28,13 @@ public class PublicacionRestController {
 	
 	@RequestMapping(value = "/publicaciones", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Publicacion> listarPublicaciones() {
+	public ResponseEntity<List<Publicacion>> listarPublicaciones() {
 	    List<Publicacion> publicaciones = publicacionDAO.obtenerTodos();
 	    if(publicaciones.isEmpty()){
-	    	return null;
+	    	return new ResponseEntity<List<Publicacion>>(HttpStatus.NO_CONTENT); 
     	}
 	    //return new ResponseEntity<List<Publicacion>>(publicaciones, HttpStatus.OK);
-	    return publicaciones;
+	    return new ResponseEntity<List<Publicacion>>(publicaciones,HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/publicaciones/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)    

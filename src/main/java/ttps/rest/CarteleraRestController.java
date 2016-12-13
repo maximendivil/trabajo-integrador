@@ -32,12 +32,12 @@ public class CarteleraRestController {
 	
 	@RequestMapping(value = "/carteleras", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Cartelera> listarCarteleras() {
+	public ResponseEntity<List<Cartelera>> listarCarteleras() {
 	    List<Cartelera> carteleras = carteleraDAO.obtenerTodos();
 	    if(carteleras.isEmpty()){
-	    	return null;
+	    	return new ResponseEntity<List<Cartelera>>(HttpStatus.NO_CONTENT); 
     	}
-	    return carteleras;
+	    return new ResponseEntity<List<Cartelera>>(carteleras,HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/carteleras/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)    

@@ -20,13 +20,13 @@ import ttps.clases.Publicacion;
 import ttps.interfacesDAO.PublicacionDAO;
 
 @RestController
-@RequestMapping(value = "/publicacion")
+@RequestMapping(value = "/publicaciones")
 public class PublicacionRestController {
 	
 	@Autowired
 	private PublicacionDAO publicacionDAO;
 	
-	@RequestMapping(value = "/publicaciones", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<List<Publicacion>> listarPublicaciones() {
 	    List<Publicacion> publicaciones = publicacionDAO.obtenerTodos();
@@ -37,7 +37,7 @@ public class PublicacionRestController {
 	    return new ResponseEntity<List<Publicacion>>(publicaciones,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/publicaciones/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)    
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)    
 	public ResponseEntity<Publicacion> listarPublicacion(@PathVariable("id") long id) {
 		Publicacion publicacion = publicacionDAO.obtener(id);
 		if (publicacion == null) { 
@@ -46,7 +46,7 @@ public class PublicacionRestController {
         return new ResponseEntity<Publicacion>(publicacion, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/publicaciones", method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> crearPublicacion(@RequestBody Publicacion publicacion, UriComponentsBuilder ucBuilder){
 		publicacionDAO.guardar(publicacion);
 		HttpHeaders headers = new HttpHeaders();
@@ -55,7 +55,7 @@ public class PublicacionRestController {
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED); 
 	}
 	
-	@RequestMapping(value = "/publicaciones/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Publicacion> actualizarPublicacion(@PathVariable("id") long id, @RequestBody Publicacion publicacion) {
 		Publicacion actual = publicacionDAO.obtener(id);
 		if (actual == null) {
@@ -72,7 +72,7 @@ public class PublicacionRestController {
 		return new ResponseEntity<Publicacion>(actual, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/publicaciones/{id}", method = RequestMethod.DELETE)    
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)    
 	public ResponseEntity<Publicacion> eliminarPublicacion(@PathVariable("id") long id) {
         Publicacion publicacion = publicacionDAO.obtener(id);
         if (publicacion == null) {

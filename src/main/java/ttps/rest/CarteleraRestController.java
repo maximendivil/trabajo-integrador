@@ -22,7 +22,7 @@ import ttps.interfacesDAO.CarteleraDAO;
 import ttps.interfacesDAO.PublicacionDAO;
 
 @RestController
-@RequestMapping(value = "/cartelera")
+@RequestMapping(value = "/carteleras")
 public class CarteleraRestController {
 	
 	@Autowired
@@ -30,7 +30,7 @@ public class CarteleraRestController {
 	@Autowired
 	private PublicacionDAO publicacionDAO;
 	
-	@RequestMapping(value = "/carteleras", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<List<Cartelera>> listarCarteleras() {
 	    List<Cartelera> carteleras = carteleraDAO.obtenerTodos();
@@ -40,7 +40,7 @@ public class CarteleraRestController {
 	    return new ResponseEntity<List<Cartelera>>(carteleras,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/carteleras/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)    
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)    
 	public ResponseEntity<Cartelera> listarCartelera(@PathVariable("id") long id) {
 		Cartelera cartelera = carteleraDAO.obtener(id);
 		if (cartelera == null) { 
@@ -58,17 +58,17 @@ public class CarteleraRestController {
 	    return alumnos;
 	}
 	
-	@RequestMapping(value = "/carteleras", method = RequestMethod.POST)
-	public ResponseEntity<Void> crearPublicacion(@RequestBody Cartelera cartelera, UriComponentsBuilder ucBuilder){
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<Void> crearCartelera(@RequestBody Cartelera cartelera, UriComponentsBuilder ucBuilder){
 		carteleraDAO.guardar(cartelera);
 		HttpHeaders headers = new HttpHeaders();
-		headers.setLocation(ucBuilder.path("/cartelera/carteleras/{id}").buildAndExpand(cartelera.getId()).toUri());
+		headers.setLocation(ucBuilder.path("/cartelera/{id}").buildAndExpand(cartelera.getId()).toUri());
 		
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED); 
 	}
 	
-	@RequestMapping(value = "/carteleras/{id}/", method = RequestMethod.POST)
-	public ResponseEntity<Cartelera> crearPublicacion(@RequestBody Publicacion publicacion, @PathVariable("id") long idCartelera, UriComponentsBuilder ucBuilder){
+	@RequestMapping(value = "/{id}/publicacion", method = RequestMethod.POST)
+	public ResponseEntity<Cartelera> agregarPublicacion(@RequestBody Publicacion publicacion, @PathVariable("id") long idCartelera, UriComponentsBuilder ucBuilder){
 		Cartelera cartelera = carteleraDAO.obtener(idCartelera);
 		publicacionDAO.guardar(publicacion);
 		cartelera.agregarPublicacion(publicacion);		
@@ -76,7 +76,7 @@ public class CarteleraRestController {
 		return new ResponseEntity<Cartelera>(cartelera, HttpStatus.OK); 
 	}
 	
-	@RequestMapping(value = "/carteleras/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Cartelera> actualizarCartelera(@PathVariable("id") long id, @RequestBody Cartelera cartelera) {
 		Cartelera actual = carteleraDAO.obtener(id);
 		if (actual == null) {
@@ -91,7 +91,7 @@ public class CarteleraRestController {
 		return new ResponseEntity<Cartelera>(actual, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/carteleras/{id}", method = RequestMethod.DELETE)    
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)    
 	public ResponseEntity<Cartelera> eliminarPublicacion(@PathVariable("id") long id) {
         Cartelera cartelera = carteleraDAO.obtener(id);
         if (cartelera == null) {

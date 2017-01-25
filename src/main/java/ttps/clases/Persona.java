@@ -31,7 +31,7 @@ public abstract class Persona implements java.io.Serializable{
 	protected String email;
 	protected int rol; // 1 -> Admin, 2 -> Profesor, 3 -> Alumno, 4 -> Publicador
 	protected String usuario;
-	protected String contraseña;
+	protected String password;
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="creador",cascade={CascadeType.REMOVE})
 	private Set<Comentario> comentarios;
 
@@ -48,7 +48,7 @@ public abstract class Persona implements java.io.Serializable{
 		this.email = email;
 		this.rol = rol;
 		this.usuario = usuario;
-		this.contraseña = contraseña;
+		this.password = contraseña;
 		this.borrado = 0;
 		this.comentarios = new HashSet<Comentario>();
 	}
@@ -110,12 +110,12 @@ public abstract class Persona implements java.io.Serializable{
 		this.usuario = usuario;
 	}
 
-	public String getContraseña() {
-		return contraseña;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 	public String getEmail() {

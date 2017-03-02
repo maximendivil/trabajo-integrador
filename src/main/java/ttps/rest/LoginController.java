@@ -16,6 +16,7 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -80,34 +81,21 @@ public class LoginController {
 			HttpClient httpClient = HttpClientBuilder.create().build();
 			HttpPost postRequest = new HttpPost("http://localhost:8080/APIRESTGuarani/" + clase + "/chequearlogin");
 			
-			/*JSONObject json = new JSONObject();
+			JSONObject json = new JSONObject();
 			json.put("usuario", user.getUsuario());
 			json.put("contraseña", user.getPassword());
 			
-			HttpEntity httpEntity = new StringEntity(json.toString());
+			StringEntity httpEntity = new StringEntity(json.toString(),ContentType.APPLICATION_JSON);
 			
-			postRequest.setEntity(httpEntity);*/
-			
-		    /*postRequest.setHeader("Accept", "application/json");
-		    postRequest.setHeader("Content-type", "application/json");*/
-			
-			/*List <NameValuePair> nvps = new ArrayList <NameValuePair>();
-			nvps.add(new BasicNameValuePair("usuario", "maximendivil"));
-			nvps.add(new BasicNameValuePair("contraseña", "mmendivil123"));
-			postRequest.setEntity(new UrlEncodedFormEntity(nvps));*/
-			
-			StringEntity params =new StringEntity("{\"usuario\":\"maximendivil\",\"contraseña\":\"mmendivil123\"}");
-		    postRequest.addHeader("content-type", "application/json");
-		    postRequest.setEntity(params);
+			postRequest.setEntity(httpEntity);
 		    
 			HttpResponse response = httpClient.execute(postRequest);
 			
 			if (response.getStatusLine().getStatusCode() != 200) {
-				throw new RuntimeException("Failed : HTTP error code : "
-					+ response.getStatusLine().getStatusCode());
+				throw new IllegalArgumentException("Usuario o password invalido");
 			}
 
-			BufferedReader br = new BufferedReader(
+			/*BufferedReader br = new BufferedReader(
 	                        new InputStreamReader((response.getEntity().getContent())));
 
 			String output;
@@ -116,7 +104,7 @@ public class LoginController {
 				System.out.println(output);
 			}
 
-			httpClient.getConnectionManager().shutdown();
+			httpClient.getConnectionManager().shutdown();*/
 
 		  } catch (MalformedURLException e) {
 

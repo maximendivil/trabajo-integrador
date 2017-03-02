@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
 @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
-public abstract class Persona implements java.io.Serializable{
+public class Persona implements java.io.Serializable{
 	//Variables de instancia
 	@Id @GeneratedValue
 	protected long id;

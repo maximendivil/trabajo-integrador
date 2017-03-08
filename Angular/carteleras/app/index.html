@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+<head>
+	<meta http-equiv="Access-Control-Allow-Origin" content="*"/>
+	<!--  Declaro las dependencias de bootstrap, angular y demas librerias que usa la app -->
+
+	<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
+
+	
+
+	
+
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous"> -->
+
+	<!-- Latest compiled and minified JavaScript -->
+	<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script> -->
+	<meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="Preview page of Metronic Admin Theme #3 for " name="description" />
+    <meta content="" name="author" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->    
+    <link href="assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <link href="assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN THEME GLOBAL STYLES -->
+    <link href="assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+    <link href="assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
+    <!-- END THEME GLOBAL STYLES -->
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link href="assets/pages/css/login.min.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL STYLES -->
+    <!-- BEGIN THEME LAYOUT STYLES -->
+    <!-- END THEME LAYOUT STYLES -->
+    <link rel="shortcut icon" href="favicon.ico" />
+
+	<title>Cartelera Virtual - Facultad de Inform&aacute;tica</title>
+</head>
+<body>
+
+	<div ui-view="main"></div>
+
+	<!--  Librerias core de angular -->
+  <!-- <script src="shared/libs/angular/angular.js"></script> -->
+
+	<!-- Dependencias necesarias para que funcione masonry -->
+
+	<script src="shared/libs/jquery/dist/jquery.js"></script>
+  <script src="shared/libs/jquery-bridget/jquery-bridget.js"></script>
+  <script src="shared/libs/ev-emitter/ev-emitter.js"></script>
+  <script src="shared/libs/desandro-matches-selector/matches-selector.js"></script>
+  <script src="shared/libs/fizzy-ui-utils/utils.js"></script>
+  <script src="shared/libs/get-size/get-size.js"></script>
+  <script src="shared/libs/outlayer/item.js"></script>
+  <script src="shared/libs/outlayer/outlayer.js"></script>
+  <script src="shared/libs/masonry/masonry.js"></script>
+  <script src="shared/libs/imagesloaded/imagesloaded.js"></script>
+
+	<!--  Lib core de angular -->
+  <script src="shared/libs/angular/angular.js"></script>
+
+  <script src="shared/libs/angular-masonry/angular-masonry.js"></script>
+
+<!-- manejar el routeo -->
+	<script type="text/javascript" src="shared/libs/angular-ui-router/release/angular-ui-router.js"></script>
+
+<!-- trabajar con el localStorage del nagegador desde angular -->
+	<script type="text/javascript" src="shared/libs/angular-local-storage.js"></script>
+
+
+<!-- ************************************************************************************************************* -->
+<!-- Dependencies de nuestra aplicacion -->
+<!-- Aca declaramos todos nuestros modulos, controllers, servicios, filtros, etc -->
+	<script type="text/javascript" src="js/app.modules.js"></script>
+	<script type="text/javascript" src="js/app/environment.js"></script>
+	<script type="text/javascript" src="js/cartelera/route.js"></script>
+	<script type="text/javascript" src="js/cartelera/controllers/cartelera.ctrl.js"></script>
+	<script type="text/javascript" src="js/cartelera/controllers/detail.ctrl.js"></script>
+	<script type="text/javascript" src="js/cartelera/services/cartelera.service.js"></script>
+	<script type="text/javascript" src="js/login/controllers/login.ctrl.js"></script>
+	<script type="text/javascript" src="js/login/services/login.service.js"></script>
+	<script type="text/javascript" src="js/login/route.js"></script>
+	<script type="text/javascript" src="js/app/route.js"></script>
+	<script type="text/javascript" src="js/app/http.token.interceptor.js"></script>
+	<script type="text/javascript" src="js/app/run.js"></script>
+
+	<!--  directiva que submitea un textarea al hacer click -->
+	<script type="text/javascript" src="js/app/enter.directive.js"></script>
+
+</body>
+</html>

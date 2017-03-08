@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="col-md-5">
+    <a ui-sref="cartelera"><h4>Volver a la Cartelera</h4></a>
+  </div>
+</div>
+<div class="jumbotron">
+  <div class="container">
+    <div>
+      <div >
+        <div class="thumbnail" ng-show="brick.src">
+          <img class="image" ng-src="{{ brick.src }}" alt="una imagen">
+        </div>
+        <div class="caption">
+          <h3>{{ brick.titulo }}</h3>
+          <p>{{ brick.contenido }}</p>
+          <p>
+            <a ng-show="!viewComment" class="btn btn-primary" ng-click="viewComment = true" role="button">Agregar un comentario</a>
+            <a ng-show="viewComment"  class="btn btn-warning" ng-click="viewComment = false" role="button">Cancelar</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+      <div class="row" ng-if="viewComment == true">
+        <div class="col-sm-1">
+          <div class="thumbnail">
+            <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+          </div>
+        </div>
+
+        <div class="col-sm-11">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <strong>Manuel Ortiz</strong><span class="text-muted"> comentando ahora</span>
+            </div>
+            <div class="panel-body">
+              <div class="form-group">
+                <textarea ng-enter="submit(section, $event)" ng-model="$parent.newComment" class="form-control" rows="3" id="comment"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h3>Comentarios</h3>
+      </div><!-- /col-sm-12 -->
+    </div><!-- /row -->
+    <div class="row" ng-repeat="c in comments">
+      <div class="col-sm-1">
+        <div class="thumbnail">
+          <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+        </div>
+      </div>
+
+      <div class="col-sm-11">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <strong>{{c.autor}}</strong> <span class="text-muted">comentado hace 5 d&iacute;as</span>
+          </div>
+          <div class="panel-body">
+            {{c.texto}}
+          </div>
+        </div>
+      </div>
+    </div><!-- /container del comentario -->
+  </div>

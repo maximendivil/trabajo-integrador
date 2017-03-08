@@ -1,0 +1,24 @@
+{
+  "name": "Cartelera Facultad de Informatica",
+  "authors": [
+    "Manuel Ortiz <ortizman@gmail.com>"
+  ],
+  "description": "TTPS 2016. Ejemplo de la cartelera virtual en Angular JS.",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/shared/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-ui-router": "ui-router#^0.3.2",
+    "angular": "^1.5.8",
+    "angular-masonry": "^0.16.0"
+  }
+}

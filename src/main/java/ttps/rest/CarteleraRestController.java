@@ -2,11 +2,13 @@ package ttps.rest;
 
 import java.util.List;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import ttps.clases.Alumno;
 import ttps.clases.Cartelera;
@@ -32,21 +37,27 @@ public class CarteleraRestController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
-	public ResponseEntity<List<Cartelera>> listarCarteleras() {
-	    List<Cartelera> carteleras = carteleraDAO.obtenerTodos();
+	public String listarCarteleras() {
+	    List<Cartelera> carteleras = carteleraDAO.obtenerCarteleras();
 	    if(carteleras.isEmpty()){
-	    	return new ResponseEntity<List<Cartelera>>(HttpStatus.NO_CONTENT); 
+	    	//return new ResponseEntity<List<Cartelera>>(HttpStatus.NO_CONTENT); 
     	}
-	    return new ResponseEntity<List<Cartelera>>(carteleras,HttpStatus.OK);
+	    String json = new Gson().toJson(carteleras);
+	    //return new ResponseEntity<List<Cartelera>>(carteleras,HttpStatus.OK);
+	    return json;
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)    
-	public ResponseEntity<Cartelera> listarCartelera(@PathVariable("id") long id) {
-		Cartelera cartelera = carteleraDAO.obtener(id);
-		if (cartelera == null) { 
-			return new ResponseEntity<Cartelera>(HttpStatus.NOT_FOUND);
+	public ResponseEntity<List<Publicacion>> listarCartelera(@PathVariable("id") long id) {
+		List<Publicacion> publicaciones = carteleraDAO.obtenerPublicaciones(id);
+		if (publicaciones == null) { 
+			return new ResponseEntity<List<Publicacion>>(HttpStatus.NOT_FOUND);
 		}
-        return new ResponseEntity<Cartelera>(cartelera, HttpStatus.OK);
+        return new ResponseEntity<List<Publicacion>>(publicaciones, HttpStatus.OK);
+		//Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		//String json = gson.toJson(publicaciones);
+	    //return json;
+	    //return gson.toJson(publicaciones);
 	}
 	
 	@RequestMapping(value = "/{id}/alumnosInteresados", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)    

@@ -7,7 +7,8 @@ angular.module('myapp.cartelera')
 		return 'http://lorempixel.com/g/280/' + height + '/?' + id;
 	};
 
-	$scope.cargarCartelera = function(id){
+	$scope.cargarCartelera = function(id,nombre){
+		$scope.carteleraActual = nombre;
 		CarteleraService.getCartelera(id)
 		.then(function(response){
 			  //$scope.anioActivo = id;
@@ -23,16 +24,17 @@ angular.module('myapp.cartelera')
 		});
 	};
 
-	/*$scope.anioActivo = 'primero';
-	//inicializo la cartelera con el primer año
-  	$scope.cargarCartelera($scope.anioActivo);*/
-
-  	$scope.cargarCarteleras = CarteleraService.getCarteleras().then(function(response){
+	$scope.cargarCarteleras = CarteleraService.getCarteleras().then(function(response){
 	  	$scope.carteleras = response.data;
 	}, 
 	function(response) {
       console.log("algo anduvo mal");
   	}
 	);
+	/*$scope.anioActivo = 'primero';
+	//inicializo la cartelera con el primer año*/
+  	$scope.cargarCartelera(1,"Ingresantes");
+
+  	
 
 });
